@@ -1,0 +1,234 @@
+SecureObjects:
+- UId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
+  UniqueName: frmMain
+  IsEnabled: true
+  ParentUId: 
+  IsSecure: true
+  IsDirty: 
+  Security:
+    DaclAllowInherit: true
+    SaclAllowInherit: true
+    SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+    Dacl:
+    - UId: ac300571-ccc0-4432-a9e8-ff30a099bd9c
+      RightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      Right: FullControl
+      Allowed: True
+      Inheritable: True
+      InheritedFrom: f7281aa2-2cc7-43bb-908e-08804bd1b66c
+      TrusteeUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+    - UId: ed3acb41-b5ef-4322-8dbc-05f9f4b32ca6
+      RightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      Right: Visible
+      Allowed: True
+      Inheritable: True
+      InheritedFrom: c187b599-a412-4b48-ba8c-f2b075bf5687
+      TrusteeUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+    - UId: 096bc950-57ce-4c35-914b-3da9e8e6ecf1
+      RightType: Suplex.Security.AclModel.FileSystemRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      Right: Read
+      Allowed: True
+      Inheritable: True
+      InheritedFrom: de2a61e6-2fac-492a-9c7c-4ed1b0ec2c26
+      TrusteeUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+    DaclConverters: []
+    Sacl: []
+    Results: {}
+  Parent: 
+  Children:
+  - UId: fd898a48-9a39-4b74-89bf-9444b972630e
+    UniqueName: txtId
+    IsEnabled: true
+    ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
+    IsSecure: true
+    IsDirty: 
+    Security:
+      DaclAllowInherit: true
+      SaclAllowInherit: true
+      SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+      Dacl:
+      - UId: 9a44c4c4-c038-493f-842d-b859c6084f3f
+        RightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        Right: Visible
+        Allowed: False
+        Inheritable: True
+        InheritedFrom: aa710d1e-3a8e-4973-a577-07e5aa9a9130
+        TrusteeUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+      DaclConverters: []
+      Sacl: []
+      Results: {}
+    Parent: 
+    Children: []
+  - UId: 1748a5ae-62c3-4722-b802-ff13c88f1ce9
+    UniqueName: btnCreate
+    IsEnabled: true
+    ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
+    IsSecure: true
+    IsDirty: 
+    Security:
+      DaclAllowInherit: true
+      SaclAllowInherit: true
+      SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+      Dacl:
+      - UId: 72a63510-807d-419f-a835-8bb69144ca1c
+        RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        Right: Insert
+        Allowed: True
+        Inheritable: True
+        InheritedFrom: 01ff8eeb-01df-4674-996d-445539be988e
+        TrusteeUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+      DaclConverters:
+      - UId: 00ad7b55-e525-423e-8ba9-e73ede986600
+        SourceRight: Insert
+        SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        TargetRight: Enabled
+        TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        Inheritable: True
+      Sacl: []
+      Results: {}
+    Parent: 
+    Children: []
+  - UId: 8a8b88f0-f2af-4113-b4e4-d3c69d13b303
+    UniqueName: pnlInfo
+    IsEnabled: true
+    ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
+    IsSecure: false
+    IsDirty: 
+    Security:
+      DaclAllowInherit: true
+      SaclAllowInherit: true
+      SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+      Dacl: []
+      DaclConverters: []
+      Sacl: []
+      Results: {}
+    Parent: 
+    Children:
+    - UId: eacece1b-1108-4260-90e6-70d52f271250
+      UniqueName: lblInfoData
+      IsEnabled: true
+      ParentUId: 8a8b88f0-f2af-4113-b4e4-d3c69d13b303
+      IsSecure: true
+      IsDirty: 
+      Security:
+        DaclAllowInherit: true
+        SaclAllowInherit: true
+        SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+        Dacl: []
+        DaclConverters:
+        - UId: 802483cc-cc38-4d5e-aba4-182e69aa7540
+          SourceRight: Read
+          SourceRightType: Suplex.Security.AclModel.FileSystemRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+          TargetRight: Visible, Enabled
+          TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+          Inheritable: True
+        - UId: 25859e85-8988-481f-b812-7e5911748040
+          SourceRight: Update
+          SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+          TargetRight: Create, Write
+          TargetRightType: Suplex.Security.AclModel.FileSystemRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+          Inheritable: True
+        Sacl: []
+        Results: {}
+      Parent: 
+      Children: []
+Users:
+- IsAnonymous: false
+  IsUser: true
+  ImpersonationContext: 
+  HasImpersonationContext: false
+  UId: 4b385ae0-5410-4da9-8275-0bc20f8de1b8
+  Name: Careen Takouhi
+  Description: first user
+  IsLocal: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
+  ImpersonationContext: 
+  HasImpersonationContext: false
+  UId: e9e7dc92-5958-49b3-8cb7-6091a5d8b5c9
+  Name: Colene Esmée
+  Description: 
+  IsLocal: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
+  ImpersonationContext: 
+  HasImpersonationContext: false
+  UId: 0913e73a-daab-463c-a305-3ebfabd8fa06
+  Name: Shel Tierney
+  Description: 
+  IsLocal: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
+  ImpersonationContext: 
+  HasImpersonationContext: false
+  UId: d66017d1-7b61-4035-b42b-abc83eb19d24
+  Name: Aniyah Roz
+  Description: 
+  IsLocal: false
+  IsBuiltIn: false
+  IsEnabled: false
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
+  ImpersonationContext: 
+  HasImpersonationContext: false
+  UId: bac37850-da6e-4d51-a34a-1e7d7b3860e8
+  Name: Johnathan Melany
+  Description: 
+  IsLocal: false
+  IsBuiltIn: false
+  IsEnabled: false
+  IsValid: false
+  IsDirty: 
+Groups:
+- IsUser: false
+  Mask: 
+  Groups: 
+  UId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+  Name: Admins
+  Description: 
+  IsLocal: true
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsUser: false
+  Mask: 
+  Groups: 
+  UId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+  Name: Users
+  Description: 
+  IsLocal: true
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+GroupMembership:
+- GroupUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+  MemberUId: 4b385ae0-5410-4da9-8275-0bc20f8de1b8
+  IsMemberUser: true
+- GroupUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+  MemberUId: bac37850-da6e-4d51-a34a-1e7d7b3860e8
+  IsMemberUser: true
+- GroupUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+  MemberUId: 0913e73a-daab-463c-a305-3ebfabd8fa06
+  IsMemberUser: true
+- GroupUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+  MemberUId: d66017d1-7b61-4035-b42b-abc83eb19d24
+  IsMemberUser: true
+- GroupUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
+  MemberUId: e9e7dc92-5958-49b3-8cb7-6091a5d8b5c9
+  IsMemberUser: true
