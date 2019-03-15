@@ -11,6 +11,7 @@ namespace SuplexSampleApp
 {
     public partial class MainDlg : Form
     {
+        EmployeeDataAccessLayer _employeeDal = null;
         FileSystemDal _suplexDal = new FileSystemDal();
         FileSystemWatcher _filestoreWatcher;
 
@@ -82,6 +83,7 @@ namespace SuplexSampleApp
         void RefreshSuplex(string filestorePath)
         {
             _suplexDal = FileSystemDal.LoadFromYamlFile( filestorePath );
+            _employeeDal = new EmployeeDataAccessLayer( _suplexDal );
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
         }
         #endregion
@@ -90,8 +92,13 @@ namespace SuplexSampleApp
         #region Apply Security
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string currentUser = ((User)cmbUsers.SelectedItem).Name;
+
+            //set the "current user" on the Employees DAL
+            _employeeDal.CurrentUser = currentUser;
+
             //Evaluate the security information, starting from the top-most control
-            SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmMain", ((User)cmbUsers.SelectedItem).Name );
+            SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmMain", currentUser );
 
             if( chkApplyRecursive.Checked )
                 ApplyRecursive( secureObject );
