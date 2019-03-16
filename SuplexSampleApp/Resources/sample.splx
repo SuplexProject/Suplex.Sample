@@ -53,7 +53,7 @@ SecureObjects:
     Parent: 
     Children: []
   - UId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
-    UniqueName: frmMain
+    UniqueName: frmEditor
     IsEnabled: true
     ParentUId: ba2677ac-8dc3-4de4-bd81-86b7cf3f0b6f
     IsSecure: true
@@ -64,13 +64,13 @@ SecureObjects:
       SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
       Dacl: []
       DaclConverters:
-      - UId: f990dff3-5e5c-49b4-bfab-f0327d9d76fb
+      - UId: 5a8d3ccc-f41c-4f36-8cce-793fbc8956e9
         SourceRight: FullControl
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         TargetRight: Operate
         TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         Inheritable: True
-      - UId: bb7ce685-5f4f-4539-b58f-167ab22cab48
+      - UId: 6d1efe4e-a7d1-40c5-978b-0e0c38068f2a
         SourceRight: List
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         TargetRight: Visible, Enabled
@@ -81,7 +81,7 @@ SecureObjects:
     Parent: 
     Children:
     - UId: fd898a48-9a39-4b74-89bf-9444b972630e
-      UniqueName: txtId
+      UniqueName: lblEmployeeId
       IsEnabled: true
       ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
       IsSecure: true
@@ -91,7 +91,7 @@ SecureObjects:
         SaclAllowInherit: true
         SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
         Dacl:
-        - UId: 9a44c4c4-c038-493f-842d-b859c6084f3f
+        - UId: f608ce1e-c69d-48cf-8415-28305f65bbcf
           RightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
           Right: Visible
           Allowed: False
@@ -120,7 +120,7 @@ SecureObjects:
       Parent: 
       Children: []
     - UId: 1748a5ae-62c3-4722-b802-ff13c88f1ce9
-      UniqueName: btnCreate
+      UniqueName: btnUpdate
       IsEnabled: true
       ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
       IsSecure: true
@@ -131,7 +131,7 @@ SecureObjects:
         SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
         Dacl: []
         DaclConverters:
-        - UId: cd0597f9-7b3f-4f2e-998f-40be32d435cb
+        - UId: 83abf1af-afdc-4d3e-a84c-f9bf08b1ef54
           SourceRight: Insert
           SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
           TargetRight: Enabled

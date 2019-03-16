@@ -34,6 +34,8 @@ namespace SuplexSampleApp
             {
                 txtSuplexFileStorePath.Text = dlgOpenSuplexFileStore.FileName;
                 InitFileConnection( txtSuplexFileStorePath.Text );
+
+                cmbUsers.Focus();
             }
         }
 
@@ -98,21 +100,6 @@ namespace SuplexSampleApp
         #endregion
 
 
-        private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Employee selected = (Employee)lstEmployees.SelectedItem;
-            Employee employee = _employeeDal.GetEmployee( selected?.Id ?? 0 );
-            if( employee != null )
-            {
-                txtId.Text = employee.Id.ToString();
-                txtName.Text = employee.Name;
-            }
-            else
-            {
-                txtId.Text = txtName.Text = string.Empty;
-            }
-        }
-
 
         #region Apply Security
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,12 +117,12 @@ namespace SuplexSampleApp
                 this.UiThreadHelper( () => lstEmployees.DataSource = null );
 
             //Evaluate the security information, starting from the top-most control
-            SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmMain", currentUser );
+            SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmEditor", currentUser );
 
-            if( chkApplyRecursive.Checked )
-                ApplyRecursive( secureObject );
-            else
-                ApplyDirect( secureObject );
+            ApplyRecursive( secureObject );
+
+            //alternate, manual method (not preferred)
+            //ApplyDirect( secureObject );
 
         }
 
@@ -145,14 +132,44 @@ namespace SuplexSampleApp
         /// <param name="secureObject">A reference to the resolved/evaluated security object.</param>
         void ApplyDirect(SecureObject secureObject)
         {
-            frmMain.Visible = secureObject?.Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
-            txtId.Visible = secureObject?.FindChild<SecureObject>( "txtId" ).Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
-            btnCreate.Enabled = secureObject?.FindChild<SecureObject>( "btnCreate" ).Security.Results.GetByTypeRight( RecordRight.Insert ).AccessAllowed ?? false;
+            frmEditor.Visible = secureObject?.Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
+            lblEmployeeId.Visible = secureObject?.FindChild<SecureObject>( "txtId" ).Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
+            btnUpdate.Enabled = secureObject?.FindChild<SecureObject>( "btnCreate" ).Security.Results.GetByTypeRight( RecordRight.Insert ).AccessAllowed ?? false;
         }
 
         void ApplyRecursive(SecureObject secureObject)
         {
-            frmMain.ApplySecurity( secureObject );
+            frmEditor.ApplySecurity( secureObject );
+        }
+        #endregion
+
+
+        #region form actions
+        private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Employee selected = (Employee)lstEmployees.SelectedItem;
+            Employee employee = _employeeDal.GetEmployee( selected?.Id ?? 0 );
+            if( employee != null )
+            {
+                frmEditor.Tag = employee;
+                lblEmployeeId.Text = employee.Id.ToString();
+                txtName.Text = employee.Name;
+            }
+            else
+            {
+                lblEmployeeId.Text = txtName.Text = string.Empty;
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if( frmEditor.Tag is Employee employee )
+            {
+                employee.Name = txtName.Text;
+                Employee updated = _employeeDal.UpdateEmployee( employee );
+                if( updated != null )
+                    ((Employee)lstEmployees.SelectedItem).Name = updated.Name;
+            }
         }
         #endregion
     }

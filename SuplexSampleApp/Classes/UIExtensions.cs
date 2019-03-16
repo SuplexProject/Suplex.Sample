@@ -29,8 +29,8 @@ namespace SuplexSampleApp
             {
                 control.Visible = found.Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed;
                 control.Enabled = found.Security.Results.GetByTypeRight( UIRight.Enabled ).AccessAllowed;
-                if( control is TextBox )
-                    ((TextBox)control).ReadOnly = !found.Security.Results.GetByTypeRight( UIRight.Operate ).AccessAllowed;
+                if( control is TextBox textBox )
+                    textBox.ReadOnly = !found.Security.Results.GetByTypeRight( UIRight.Operate ).AccessAllowed;
             }
 
             if( control.HasChildren )
