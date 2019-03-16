@@ -88,7 +88,7 @@ namespace SuplexSampleApp
             _suplexDal = FileSystemDal.LoadFromYamlFile( filestorePath );
             _employeeDal = new EmployeeDataAccessLayer( _suplexDal );
 
-            this.UiThreadHelper( () => lstErrors.Items.Clear() );
+            this.UiThreadHelper( () => lstMessages.Items.Clear() );
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
         }
         #endregion
@@ -103,21 +103,7 @@ namespace SuplexSampleApp
             //set the "current user" on the Employees DAL
             _employeeDal.CurrentUser = currentUser;
 
-            try
-            {
-                lstEmployees.DisplayMember = "Name";
-                lstEmployees.Items.Clear();
-                List<Employee> employees = _employeeDal.GetEmployees()?.OrderBy( emps => emps.Name ).ToList();
-                if( employees != null )
-                    foreach( Employee employee in employees )
-                        lstEmployees.Items.Add( employee );
-                else
-                    lstEmployees.Items.Clear();
-            }
-            catch( Exception ex )
-            {
-                lstErrors.Items.Insert( 0, ex.Message );
-            }
+            RefreshEmployeesList();
 
             //Evaluate the security information, starting from the top-most control
             SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmEditor", currentUser );
@@ -129,7 +115,16 @@ namespace SuplexSampleApp
         }
 
         /// <summary>
-        /// Brute-force permissioning - direct lookup of results with "known" translation of non-UI rights
+        /// Recursively examines frmEditor and its children for applying security; see UIExtensions
+        /// </summary>
+        /// <param name="secureObject">The matching SecureObject to frmEditor</param>
+        void ApplyRecursive(SecureObject secureObject)
+        {
+            frmEditor.ApplySecurity( secureObject );
+        }
+
+        /// <summary>
+        /// Brute-force permissioning - direct lookup of results with "known" translation of non-UI rights (not preferred)
         /// </summary>
         /// <param name="secureObject">A reference to the resolved/evaluated security object.</param>
         void ApplyDirect(SecureObject secureObject)
@@ -138,15 +133,31 @@ namespace SuplexSampleApp
             lblEmployeeId.Visible = secureObject?.FindChild<SecureObject>( "txtId" ).Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
             btnUpdate.Enabled = secureObject?.FindChild<SecureObject>( "btnCreate" ).Security.Results.GetByTypeRight( RecordRight.Insert ).AccessAllowed ?? false;
         }
-
-        void ApplyRecursive(SecureObject secureObject)
-        {
-            frmEditor.ApplySecurity( secureObject );
-        }
         #endregion
 
 
         #region form actions
+        private void RefreshEmployeesList()
+        {
+            try
+            {
+                lstEmployees.DisplayMember = "Name";
+                lstEmployees.Items.Clear();
+                List<Employee> employees = _employeeDal.GetEmployees()?.OrderBy( emps => emps.Name ).ToList();
+                if( employees != null )
+                    foreach( Employee employee in employees )
+                        lstEmployees.Items.Add( employee );
+                else
+                    lstEmployees.Items.Clear();
+
+                lstMessages.Items.Insert( 0, $"Info : Retrieved {employees?.Count ?? 0} Employee records." );
+            }
+            catch( Exception ex )
+            {
+                lstMessages.Items.Insert( 0, $"Error: {ex.Message}" );
+            }
+        }
+
         private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -158,6 +169,8 @@ namespace SuplexSampleApp
                     frmEditor.Tag = employee;
                     lblEmployeeId.Text = employee.Id.ToString();
                     txtName.Text = employee.Name;
+
+                    lstMessages.Items.Insert( 0, $"Info : Retrieved [{employee}]." );
                 }
                 else
                 {
@@ -166,7 +179,7 @@ namespace SuplexSampleApp
             }
             catch( Exception ex )
             {
-                lstErrors.Items.Insert( 0, ex.Message );
+                lstMessages.Items.Insert( 0, $"Error: {ex.Message}" );
             }
         }
 
@@ -178,12 +191,14 @@ namespace SuplexSampleApp
                 {
                     employee.Name = txtName.Text;
                     Employee updated = _employeeDal.UpdateEmployee( employee );
-                    if( updated != null )
-                        lstEmployees.Items[lstEmployees.SelectedIndex] = updated;
+                    if( updated != null && lstEmployees.SelectedItem is Employee emp )
+                        emp.Name = updated.Name;
+
+                    lstMessages.Items.Insert( 0, $"Info : Updated [{updated}]." );
                 }
                 catch( Exception ex )
                 {
-                    lstErrors.Items.Insert( 0, ex.Message );
+                    lstMessages.Items.Insert( 0, $"Error: {ex.Message}" );
                 }
             }
         }

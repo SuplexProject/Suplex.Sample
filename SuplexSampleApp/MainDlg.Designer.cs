@@ -36,18 +36,18 @@
             this.cmdBrowse = new System.Windows.Forms.Button();
             this.cmdRefreshNow = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.lstEmployees = new System.Windows.Forms.ListBox();
             this.frmEditor = new System.Windows.Forms.GroupBox();
+            this.lblEmployeeId = new System.Windows.Forms.Label();
             this.pnlInfo = new System.Windows.Forms.Panel();
             this.lblInfoData = new System.Windows.Forms.Label();
             this.lblEmployeeName = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblEmployeeId = new System.Windows.Forms.Label();
-            this.lstErrors = new System.Windows.Forms.ListBox();
-            this.lblErrors = new System.Windows.Forms.Label();
+            this.lstMessages = new System.Windows.Forms.ListBox();
+            this.lblMessages = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.frmEditor.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -127,6 +127,16 @@
             this.panel1.Size = new System.Drawing.Size(752, 267);
             this.panel1.TabIndex = 12;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(149, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Employees:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // lstEmployees
             // 
             this.lstEmployees.DisplayMember = "Name";
@@ -152,6 +162,15 @@
             this.frmEditor.TabIndex = 12;
             this.frmEditor.TabStop = false;
             this.frmEditor.Text = "Employee Form (frmEditor)";
+            // 
+            // lblEmployeeId
+            // 
+            this.lblEmployeeId.AutoSize = true;
+            this.lblEmployeeId.Location = new System.Drawing.Point(120, 36);
+            this.lblEmployeeId.Name = "lblEmployeeId";
+            this.lblEmployeeId.Size = new System.Drawing.Size(0, 17);
+            this.lblEmployeeId.TabIndex = 12;
+            this.lblEmployeeId.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pnlInfo
             // 
@@ -208,52 +227,33 @@
             this.txtName.Size = new System.Drawing.Size(154, 22);
             this.txtName.TabIndex = 5;
             // 
-            // label1
+            // lstMessages
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 17);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Employees:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lstMessages.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstMessages.FormattingEnabled = true;
+            this.lstMessages.ItemHeight = 15;
+            this.lstMessages.Location = new System.Drawing.Point(15, 409);
+            this.lstMessages.Name = "lstMessages";
+            this.lstMessages.Size = new System.Drawing.Size(752, 154);
+            this.lstMessages.TabIndex = 13;
             // 
-            // lblEmployeeId
+            // lblMessages
             // 
-            this.lblEmployeeId.AutoSize = true;
-            this.lblEmployeeId.Location = new System.Drawing.Point(120, 36);
-            this.lblEmployeeId.Name = "lblEmployeeId";
-            this.lblEmployeeId.Size = new System.Drawing.Size(0, 17);
-            this.lblEmployeeId.TabIndex = 12;
-            this.lblEmployeeId.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lstErrors
-            // 
-            this.lstErrors.ForeColor = System.Drawing.Color.Red;
-            this.lstErrors.FormattingEnabled = true;
-            this.lstErrors.ItemHeight = 16;
-            this.lstErrors.Location = new System.Drawing.Point(15, 409);
-            this.lstErrors.Name = "lstErrors";
-            this.lstErrors.Size = new System.Drawing.Size(752, 164);
-            this.lstErrors.TabIndex = 13;
-            // 
-            // lblErrors
-            // 
-            this.lblErrors.AutoSize = true;
-            this.lblErrors.Location = new System.Drawing.Point(12, 390);
-            this.lblErrors.Name = "lblErrors";
-            this.lblErrors.Size = new System.Drawing.Size(51, 17);
-            this.lblErrors.TabIndex = 13;
-            this.lblErrors.Text = "Errors:";
-            this.lblErrors.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblMessages.AutoSize = true;
+            this.lblMessages.Location = new System.Drawing.Point(12, 390);
+            this.lblMessages.Name = "lblMessages";
+            this.lblMessages.Size = new System.Drawing.Size(76, 17);
+            this.lblMessages.TabIndex = 13;
+            this.lblMessages.Text = "Messages:";
+            this.lblMessages.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MainDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 578);
-            this.Controls.Add(this.lblErrors);
-            this.Controls.Add(this.lstErrors);
+            this.Controls.Add(this.lblMessages);
+            this.Controls.Add(this.lstMessages);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cmdRefreshNow);
             this.Controls.Add(this.cmdBrowse);
@@ -296,8 +296,8 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblEmployeeId;
-        private System.Windows.Forms.ListBox lstErrors;
-        private System.Windows.Forms.Label lblErrors;
+        private System.Windows.Forms.ListBox lstMessages;
+        private System.Windows.Forms.Label lblMessages;
     }
 }
 
