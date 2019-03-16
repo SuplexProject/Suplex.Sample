@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -84,7 +85,12 @@ namespace SuplexSampleApp
         {
             _suplexDal = FileSystemDal.LoadFromYamlFile( filestorePath );
             _employeeDal = new EmployeeDataAccessLayer( _suplexDal );
+
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
+
+            List<Employee> employees = _employeeDal.GetEmployees();
+            if( employees != null )
+                this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
         }
         #endregion
 
@@ -96,6 +102,13 @@ namespace SuplexSampleApp
 
             //set the "current user" on the Employees DAL
             _employeeDal.CurrentUser = currentUser;
+
+            List<Employee> employees = _employeeDal.GetEmployees();
+            lstEmployees.DisplayMember = "Name";
+            if( employees != null )
+                this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
+            else
+                this.UiThreadHelper( () => lstEmployees.DataSource = null );
 
             //Evaluate the security information, starting from the top-most control
             SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmMain", currentUser );

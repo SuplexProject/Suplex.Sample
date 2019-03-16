@@ -37,13 +37,14 @@
             this.ibiName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.frmMain = new System.Windows.Forms.GroupBox();
+            this.pnlInfo = new System.Windows.Forms.Panel();
+            this.lblInfoData = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblEmployeeName = new System.Windows.Forms.Label();
             this.cmdBrowse = new System.Windows.Forms.Button();
             this.cmdRefreshNow = new System.Windows.Forms.Button();
             this.chkApplyRecursive = new System.Windows.Forms.CheckBox();
-            this.pnlInfo = new System.Windows.Forms.Panel();
-            this.lblInfoData = new System.Windows.Forms.Label();
+            this.lstEmployees = new System.Windows.Forms.ListBox();
             this.frmMain.SuspendLayout();
             this.pnlInfo.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +132,24 @@
             this.frmMain.TabStop = false;
             this.frmMain.Text = "Employee Form (frmMain)";
             // 
+            // pnlInfo
+            // 
+            this.pnlInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInfo.Controls.Add(this.lblInfoData);
+            this.pnlInfo.Location = new System.Drawing.Point(22, 157);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.Size = new System.Drawing.Size(255, 43);
+            this.pnlInfo.TabIndex = 11;
+            // 
+            // lblInfoData
+            // 
+            this.lblInfoData.AutoSize = true;
+            this.lblInfoData.Location = new System.Drawing.Point(14, 14);
+            this.lblInfoData.Name = "lblInfoData";
+            this.lblInfoData.Size = new System.Drawing.Size(185, 17);
+            this.lblInfoData.TabIndex = 0;
+            this.lblInfoData.Text = "Some important words here.";
+            // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(123, 33);
@@ -179,29 +198,22 @@
             this.chkApplyRecursive.Text = "Apply Recursive";
             this.chkApplyRecursive.UseVisualStyleBackColor = true;
             // 
-            // pnlInfo
+            // lstEmployees
             // 
-            this.pnlInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlInfo.Controls.Add(this.lblInfoData);
-            this.pnlInfo.Location = new System.Drawing.Point(22, 157);
-            this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(255, 43);
-            this.pnlInfo.TabIndex = 11;
-            // 
-            // lblInfoData
-            // 
-            this.lblInfoData.AutoSize = true;
-            this.lblInfoData.Location = new System.Drawing.Point(14, 14);
-            this.lblInfoData.Name = "lblInfoData";
-            this.lblInfoData.Size = new System.Drawing.Size(185, 17);
-            this.lblInfoData.TabIndex = 0;
-            this.lblInfoData.Text = "Some important words here.";
+            this.lstEmployees.DisplayMember = "Name";
+            this.lstEmployees.FormattingEnabled = true;
+            this.lstEmployees.ItemHeight = 16;
+            this.lstEmployees.Location = new System.Drawing.Point(15, 152);
+            this.lstEmployees.Name = "lstEmployees";
+            this.lstEmployees.Size = new System.Drawing.Size(148, 212);
+            this.lstEmployees.TabIndex = 11;
             // 
             // MainDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 399);
+            this.Controls.Add(this.lstEmployees);
             this.Controls.Add(this.chkApplyRecursive);
             this.Controls.Add(this.cmdRefreshNow);
             this.Controls.Add(this.cmdBrowse);
@@ -241,6 +253,7 @@
         private System.Windows.Forms.CheckBox chkApplyRecursive;
         private System.Windows.Forms.Panel pnlInfo;
         private System.Windows.Forms.Label lblInfoData;
+        private System.Windows.Forms.ListBox lstEmployees;
     }
 }
 

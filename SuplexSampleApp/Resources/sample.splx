@@ -1,6 +1,6 @@
 SecureObjects:
 - UId: ba2677ac-8dc3-4de4-bd81-86b7cf3f0b6f
-  UniqueName: Employees - Records/Forms
+  UniqueName: Employees_Root
   IsEnabled: true
   ParentUId: 
   IsSecure: true
@@ -10,21 +10,21 @@ SecureObjects:
     SaclAllowInherit: true
     SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
     Dacl:
-    - UId: 128c4124-28cd-4789-b99c-0fda0d2f18a0
+    - UId: aa0fb39a-9f55-4462-87f6-ad5a0407657c
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
       Right: FullControl
       Allowed: True
       Inheritable: True
       InheritedFrom: 3c5698f7-b7f7-4341-bb40-0a1ab89f5911
       TrusteeUId: d42015e9-c8f4-4eed-a623-ad99a15cd918
-    - UId: ea19765e-d8af-4077-95ae-633b84da4ac6
+    - UId: 8a717e3e-2e2f-4a77-bec1-cf58a837657f
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-      Right: List, Select
+      Right: Select
       Allowed: True
       Inheritable: True
       InheritedFrom: cfc467ed-e0b8-4586-82e3-59bd6d512a47
       TrusteeUId: fda003c9-43f9-4a5b-aa28-f6c400496c14
-    - UId: 0b088ce3-18d2-433e-8e63-fc22b44e04b6
+    - UId: 9acacbd9-e746-42a1-aad6-a7af1c0d7268
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
       Right: List
       Allowed: True
@@ -64,13 +64,13 @@ SecureObjects:
       SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
       Dacl: []
       DaclConverters:
-      - UId: e9f6884f-3d69-4549-9971-029b80b5230b
+      - UId: c34e0839-823e-46d2-9a0b-4ea15044c529
         SourceRight: FullControl
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-        TargetRight: FullControl
+        TargetRight: Operate
         TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         Inheritable: True
-      - UId: 09d19dbd-267e-4b8d-8752-71fb3095d37c
+      - UId: 76944f76-59e9-46fe-afdd-7dd17e82788b
         SourceRight: Select
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         TargetRight: Visible, Enabled
@@ -153,135 +153,127 @@ SecureObjects:
           SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
           Dacl: []
           DaclConverters:
-          - UId: 802483cc-cc38-4d5e-aba4-182e69aa7540
-            SourceRight: Read
-            SourceRightType: Suplex.Security.AclModel.FileSystemRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-            TargetRight: Visible, Enabled
-            TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-            Inheritable: True
-          - UId: 25859e85-8988-481f-b812-7e5911748040
+          - UId: 0c199ee3-a358-4169-8080-a4dd5adffcf7
             SourceRight: Update
             SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-            TargetRight: Create, Write
-            TargetRightType: Suplex.Security.AclModel.FileSystemRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+            TargetRight: Visible
+            TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
             Inheritable: True
           Sacl: []
           Results: {}
         Parent: 
         Children: []
 Users:
-- Name: Careen Takouhi
+- IsAnonymous: false
   IsUser: true
-  IsDirty: 
-  Description: first user
-  IsEnabled: true
-  IsLocal: false
-  IsAnonymous: false
   ImpersonationContext: 
   HasImpersonationContext: false
   UId: 4b385ae0-5410-4da9-8275-0bc20f8de1b8
-  IsBuiltIn: false
-  IsValid: false
-- Name: Colene Esmée
-  IsUser: true
-  IsDirty: 
-  Description: 
-  IsEnabled: true
+  Name: Careen Takouhi
+  Description: first user
   IsLocal: false
-  IsAnonymous: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
   ImpersonationContext: 
   HasImpersonationContext: false
   UId: e9e7dc92-5958-49b3-8cb7-6091a5d8b5c9
-  IsBuiltIn: false
-  IsValid: false
-- Name: Shel Tierney
-  IsUser: true
-  IsDirty: 
+  Name: Colene Esmée
   Description: 
-  IsEnabled: true
   IsLocal: false
-  IsAnonymous: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
   ImpersonationContext: 
   HasImpersonationContext: false
   UId: 0913e73a-daab-463c-a305-3ebfabd8fa06
-  IsBuiltIn: false
-  IsValid: false
-- Name: Aniyah Roz
-  IsUser: true
-  IsDirty: 
+  Name: Shel Tierney
   Description: 
-  IsEnabled: false
   IsLocal: false
-  IsAnonymous: false
+  IsBuiltIn: false
+  IsEnabled: true
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
   ImpersonationContext: 
   HasImpersonationContext: false
   UId: d66017d1-7b61-4035-b42b-abc83eb19d24
-  IsBuiltIn: false
-  IsValid: false
-- Name: Johnathan Melany
-  IsUser: true
-  IsDirty: 
+  Name: Aniyah Roz
   Description: 
-  IsEnabled: false
   IsLocal: false
-  IsAnonymous: false
+  IsBuiltIn: false
+  IsEnabled: false
+  IsValid: false
+  IsDirty: 
+- IsAnonymous: false
+  IsUser: true
   ImpersonationContext: 
   HasImpersonationContext: false
   UId: bac37850-da6e-4d51-a34a-1e7d7b3860e8
+  Name: Johnathan Melany
+  Description: 
+  IsLocal: false
   IsBuiltIn: false
+  IsEnabled: false
   IsValid: false
+  IsDirty: 
 Groups:
-- &o0
-  Name: Team - Human Resources
+- IsUser: false
+  Mask: 
+  Groups: 
   UId: 2b9e9d66-e977-46fc-80b8-4db051c51426
-  IsUser: false
-  Mask: 
-  Groups: 
+  Name: Team - Human Resources
   Description: 
   IsLocal: true
   IsBuiltIn: false
   IsEnabled: true
   IsValid: false
   IsDirty: 
-- &o1
-  Name: Team - All Employees
+- IsUser: false
+  Mask: 
+  Groups: 
   UId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
-  IsUser: false
-  Mask: 
-  Groups: 
+  Name: Team - All Employees
   Description: 
   IsLocal: true
   IsBuiltIn: false
   IsEnabled: true
   IsValid: false
   IsDirty: 
-- Name: Role - Employee Viewers
-  UId: fda003c9-43f9-4a5b-aa28-f6c400496c14
-  IsUser: false
+- IsUser: false
   Mask: 
   Groups: 
+  UId: fda003c9-43f9-4a5b-aa28-f6c400496c14
+  Name: Role - Employee Viewers
   Description: Read-only access to Employee records
   IsLocal: true
   IsBuiltIn: false
   IsEnabled: true
   IsValid: false
   IsDirty: 
-- Name: Role - Employee Editors
-  UId: d42015e9-c8f4-4eed-a623-ad99a15cd918
-  IsUser: false
+- IsUser: false
   Mask: 
   Groups: 
+  UId: d42015e9-c8f4-4eed-a623-ad99a15cd918
+  Name: Role - Employee Editors
   Description: Full access to Employee records
   IsLocal: true
   IsBuiltIn: false
   IsEnabled: true
   IsValid: false
   IsDirty: 
-- Name: Role - Employee Reporters
-  UId: c857ddeb-ffb2-4705-9752-84f3b415d3f0
-  IsUser: false
+- IsUser: false
   Mask: 
   Groups: 
+  UId: c857ddeb-ffb2-4705-9752-84f3b415d3f0
+  Name: Role - Employee Reporters
   Description: List-access only to Employee records
   IsLocal: true
   IsBuiltIn: false
@@ -304,45 +296,9 @@ GroupMembership:
 - GroupUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
   MemberUId: e9e7dc92-5958-49b3-8cb7-6091a5d8b5c9
   IsMemberUser: true
-- GroupItem:
-    Name: Role-Editors
-    UId: d42015e9-c8f4-4eed-a623-ad99a15cd918
-    IsUser: false
-    Mask: 
-    Groups: 
-    Description: 
-    IsLocal: true
-    IsBuiltIn: false
-    IsEnabled: true
-    IsValid: false
-    IsDirty: false
-  MemberItem: *o0
-  DisplayItem: *o0
-  BaseItem:
-    GroupUId: d42015e9-c8f4-4eed-a623-ad99a15cd918
-    MemberUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
-    IsMemberUser: false
-  GroupUId: d42015e9-c8f4-4eed-a623-ad99a15cd918
+- GroupUId: d42015e9-c8f4-4eed-a623-ad99a15cd918
   MemberUId: 2b9e9d66-e977-46fc-80b8-4db051c51426
   IsMemberUser: false
-- GroupItem:
-    Name: Role-Viewers
-    UId: fda003c9-43f9-4a5b-aa28-f6c400496c14
-    IsUser: false
-    Mask: 
-    Groups: 
-    Description: 
-    IsLocal: true
-    IsBuiltIn: false
-    IsEnabled: true
-    IsValid: false
-    IsDirty: false
-  MemberItem: *o1
-  DisplayItem: *o1
-  BaseItem:
-    GroupUId: fda003c9-43f9-4a5b-aa28-f6c400496c14
-    MemberUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
-    IsMemberUser: false
-  GroupUId: fda003c9-43f9-4a5b-aa28-f6c400496c14
+- GroupUId: fda003c9-43f9-4a5b-aa28-f6c400496c14
   MemberUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
   IsMemberUser: false

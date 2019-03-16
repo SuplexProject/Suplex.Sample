@@ -40,13 +40,26 @@ namespace SuplexSampleApp
         /// Utility method to validate security access for a given right on Employee records
         /// </summary>
         /// <param name="recordRight">The right for which to validate access</param>
+        bool HasAccess(RecordRight recordRight)
+        {
+            //Look up security information by SecureObject->UniqueName => "EmployeeRecords" for the CurrentUser
+            SecureObject employeeSecurity = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "EmployeeRecords", CurrentUser );
+
+            //Assess AccessAllowed
+            return employeeSecurity?.Security.Results.GetByTypeRight( recordRight ).AccessAllowed ?? false;
+        }
+
+        /// <summary>
+        /// Utility method to validate security access for a given right on Employee records
+        /// </summary>
+        /// <param name="recordRight">The right for which to validate access</param>
         void HasAccessOrException(RecordRight recordRight)
         {
             //Look up security information by SecureObject->UniqueName => "EmployeeRecords" for the CurrentUser
             SecureObject employeeSecurity = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "EmployeeRecords", CurrentUser );
 
             //Assess AccessAllowed, throw Exception if no rights
-            if( !employeeSecurity.Security.Results.GetByTypeRight( recordRight ).AccessAllowed )
+            if( !employeeSecurity?.Security.Results.GetByTypeRight( recordRight ).AccessAllowed ?? false )
                 throw new Exception( $"You do not have rights to {recordRight} Employee records." );
         }
 
@@ -58,7 +71,8 @@ namespace SuplexSampleApp
         public List<Employee> GetEmployees(string filter = null)
         {
             //Check for access rights, throws exception if denied
-            HasAccessOrException( RecordRight.List );
+            if( !HasAccess( RecordRight.List ) )
+                return null;
 
             if( !string.IsNullOrWhiteSpace( filter ) )
                 return _employees.FindAll( e => e.Name.Contains( filter ) );
@@ -74,7 +88,8 @@ namespace SuplexSampleApp
         public Employee GetEmployee(int id)
         {
             //Check for access rights, throws exception if denied
-            HasAccessOrException( RecordRight.Select );
+            if( !HasAccess( RecordRight.Select ) )
+                return null;
 
             return _employees.FirstOrDefault( e => e.Id == id );
         }
@@ -87,7 +102,8 @@ namespace SuplexSampleApp
         public Employee CreateEmployee(string name)
         {
             //Check for access rights, throws exception if denied
-            HasAccessOrException( RecordRight.Insert );
+            if( !HasAccess( RecordRight.Insert ) )
+                return null;
 
             int id = _employees?.Count > 0 ? _employees[_employees.Count].Id : 0;
 
@@ -105,7 +121,8 @@ namespace SuplexSampleApp
         public Employee UpdateEmployee(Employee emp)
         {
             //Check for access rights, throws exception if denied
-            HasAccessOrException( RecordRight.Update );
+            if( !HasAccess( RecordRight.Update ) )
+                return null;
 
             if( emp == null )
                 return null;
@@ -125,7 +142,8 @@ namespace SuplexSampleApp
         public bool DeleteEmployee(int id)
         {
             //Check for access rights, throws exception if denied
-            HasAccessOrException( RecordRight.Delete );
+            if( !HasAccess( RecordRight.Delete ) )
+                return false;
 
             if( id <= 0 )
                 return false;
