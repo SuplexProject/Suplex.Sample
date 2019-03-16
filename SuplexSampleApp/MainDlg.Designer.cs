@@ -45,7 +45,7 @@
             this.lblEmployeeName = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtEmployeeName = new System.Windows.Forms.TextBox();
             this.lstMessages = new System.Windows.Forms.ListBox();
             this.lblMessages = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -155,7 +155,7 @@
             this.frmEditor.Controls.Add(this.lblEmployeeName);
             this.frmEditor.Controls.Add(this.lblId);
             this.frmEditor.Controls.Add(this.btnUpdate);
-            this.frmEditor.Controls.Add(this.txtName);
+            this.frmEditor.Controls.Add(this.txtEmployeeName);
             this.frmEditor.Location = new System.Drawing.Point(308, 23);
             this.frmEditor.Name = "frmEditor";
             this.frmEditor.Size = new System.Drawing.Size(311, 217);
@@ -220,12 +220,12 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // txtName
+            // txtEmployeeName
             // 
-            this.txtName.Location = new System.Drawing.Point(123, 70);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(154, 22);
-            this.txtName.TabIndex = 5;
+            this.txtEmployeeName.Location = new System.Drawing.Point(123, 70);
+            this.txtEmployeeName.Name = "txtEmployeeName";
+            this.txtEmployeeName.Size = new System.Drawing.Size(154, 22);
+            this.txtEmployeeName.TabIndex = 5;
             // 
             // lstMessages
             // 
@@ -294,7 +294,7 @@
         private System.Windows.Forms.Label lblEmployeeName;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtEmployeeName;
         private System.Windows.Forms.Label lblEmployeeId;
         private System.Windows.Forms.ListBox lstMessages;
         private System.Windows.Forms.Label lblMessages;

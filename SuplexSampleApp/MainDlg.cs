@@ -134,8 +134,8 @@ namespace SuplexSampleApp
         void ApplyDirect(SecureObject secureObject)
         {
             frmEditor.Visible = secureObject?.Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
-            lblEmployeeId.Visible = secureObject?.FindChild<SecureObject>( "txtId" ).Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
-            btnUpdate.Enabled = secureObject?.FindChild<SecureObject>( "btnCreate" ).Security.Results.GetByTypeRight( RecordRight.Insert ).AccessAllowed ?? false;
+            lblEmployeeId.Visible = secureObject?.FindChild<SecureObject>( "lblEmployeeId" ).Security.Results.GetByTypeRight( UIRight.Visible ).AccessAllowed ?? false;
+            btnUpdate.Enabled = secureObject?.FindChild<SecureObject>( "btnUpdate" ).Security.Results.GetByTypeRight( RecordRight.Update ).AccessAllowed ?? false;
         }
         #endregion
 
@@ -172,13 +172,13 @@ namespace SuplexSampleApp
                 {
                     frmEditor.Tag = employee;
                     lblEmployeeId.Text = employee.Id.ToString();
-                    txtName.Text = employee.Name;
+                    txtEmployeeName.Text = employee.Name;
 
                     lstMessages.Items.Insert( 0, $"Info : Retrieved [{employee}]." );
                 }
                 else
                 {
-                    lblEmployeeId.Text = txtName.Text = string.Empty;
+                    lblEmployeeId.Text = txtEmployeeName.Text = string.Empty;
                 }
             }
             catch( Exception ex )
@@ -193,10 +193,14 @@ namespace SuplexSampleApp
             {
                 try
                 {
-                    employee.Name = txtName.Text;
+                    employee.Name = txtEmployeeName.Text;
                     Employee updated = _employeeDal.UpdateEmployee( employee );
-                    if( updated != null && lstEmployees.SelectedItem is Employee emp )
-                        emp.Name = updated.Name;
+                    if( updated != null && lstEmployees.SelectedIndex >= 0 )
+                    {
+                        lstEmployees.SelectedIndexChanged -= lstEmployees_SelectedIndexChanged; //silly, i know
+                        lstEmployees.Items[lstEmployees.SelectedIndex] = updated;
+                        lstEmployees.SelectedIndexChanged += lstEmployees_SelectedIndexChanged;
+                    }
 
                     lstMessages.Items.Insert( 0, $"Info : Updated [{updated}]." );
                 }
