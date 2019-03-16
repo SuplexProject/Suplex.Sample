@@ -88,6 +88,7 @@ namespace SuplexSampleApp
             _suplexDal = FileSystemDal.LoadFromYamlFile( filestorePath );
             _employeeDal = new EmployeeDataAccessLayer( _suplexDal );
 
+            this.UiThreadHelper( () => lstErrors.Items.Clear() );
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
         }
         #endregion
@@ -102,14 +103,21 @@ namespace SuplexSampleApp
             //set the "current user" on the Employees DAL
             _employeeDal.CurrentUser = currentUser;
 
-            lstEmployees.DisplayMember = "Name";
-            lstEmployees.Items.Clear();
-            List<Employee> employees = _employeeDal.GetEmployees()?.OrderBy( emps => emps.Name ).ToList();
-            if( employees != null )
-                foreach( Employee employee in employees )
-                    lstEmployees.Items.Add( employee );
-            else
+            try
+            {
+                lstEmployees.DisplayMember = "Name";
                 lstEmployees.Items.Clear();
+                List<Employee> employees = _employeeDal.GetEmployees()?.OrderBy( emps => emps.Name ).ToList();
+                if( employees != null )
+                    foreach( Employee employee in employees )
+                        lstEmployees.Items.Add( employee );
+                else
+                    lstEmployees.Items.Clear();
+            }
+            catch( Exception ex )
+            {
+                lstErrors.Items.Insert( 0, ex.Message );
+            }
 
             //Evaluate the security information, starting from the top-most control
             SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmEditor", currentUser );
@@ -118,7 +126,6 @@ namespace SuplexSampleApp
 
             //alternate, manual method (not preferred)
             //ApplyDirect( secureObject );
-
         }
 
         /// <summary>
@@ -142,17 +149,24 @@ namespace SuplexSampleApp
         #region form actions
         private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Employee selected = (Employee)lstEmployees.SelectedItem;
-            Employee employee = _employeeDal.GetEmployee( selected?.Id ?? 0 );
-            if( employee != null )
+            try
             {
-                frmEditor.Tag = employee;
-                lblEmployeeId.Text = employee.Id.ToString();
-                txtName.Text = employee.Name;
+                Employee selected = (Employee)lstEmployees.SelectedItem;
+                Employee employee = _employeeDal.GetEmployee( selected?.Id ?? 0 );
+                if( employee != null )
+                {
+                    frmEditor.Tag = employee;
+                    lblEmployeeId.Text = employee.Id.ToString();
+                    txtName.Text = employee.Name;
+                }
+                else
+                {
+                    lblEmployeeId.Text = txtName.Text = string.Empty;
+                }
             }
-            else
+            catch( Exception ex )
             {
-                lblEmployeeId.Text = txtName.Text = string.Empty;
+                lstErrors.Items.Insert( 0, ex.Message );
             }
         }
 
@@ -160,10 +174,17 @@ namespace SuplexSampleApp
         {
             if( frmEditor.Tag is Employee employee )
             {
-                employee.Name = txtName.Text;
-                Employee updated = _employeeDal.UpdateEmployee( employee );
-                if( updated != null )
-                    lstEmployees.Items[lstEmployees.SelectedIndex] = updated;
+                try
+                {
+                    employee.Name = txtName.Text;
+                    Employee updated = _employeeDal.UpdateEmployee( employee );
+                    if( updated != null )
+                        lstEmployees.Items[lstEmployees.SelectedIndex] = updated;
+                }
+                catch( Exception ex )
+                {
+                    lstErrors.Items.Insert( 0, ex.Message );
+                }
             }
         }
         #endregion

@@ -46,6 +46,8 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblEmployeeId = new System.Windows.Forms.Label();
+            this.lstErrors = new System.Windows.Forms.ListBox();
+            this.lblErrors = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.frmEditor.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -86,7 +88,7 @@
             // lblUsers
             // 
             this.lblUsers.AutoSize = true;
-            this.lblUsers.Location = new System.Drawing.Point(27, 57);
+            this.lblUsers.Location = new System.Drawing.Point(27, 59);
             this.lblUsers.Name = "lblUsers";
             this.lblUsers.Size = new System.Drawing.Size(136, 17);
             this.lblUsers.TabIndex = 3;
@@ -225,11 +227,33 @@
             this.lblEmployeeId.TabIndex = 12;
             this.lblEmployeeId.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // lstErrors
+            // 
+            this.lstErrors.ForeColor = System.Drawing.Color.Red;
+            this.lstErrors.FormattingEnabled = true;
+            this.lstErrors.ItemHeight = 16;
+            this.lstErrors.Location = new System.Drawing.Point(15, 409);
+            this.lstErrors.Name = "lstErrors";
+            this.lstErrors.Size = new System.Drawing.Size(752, 164);
+            this.lstErrors.TabIndex = 13;
+            // 
+            // lblErrors
+            // 
+            this.lblErrors.AutoSize = true;
+            this.lblErrors.Location = new System.Drawing.Point(12, 390);
+            this.lblErrors.Name = "lblErrors";
+            this.lblErrors.Size = new System.Drawing.Size(51, 17);
+            this.lblErrors.TabIndex = 13;
+            this.lblErrors.Text = "Errors:";
+            this.lblErrors.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // MainDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 399);
+            this.ClientSize = new System.Drawing.Size(782, 578);
+            this.Controls.Add(this.lblErrors);
+            this.Controls.Add(this.lstErrors);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cmdRefreshNow);
             this.Controls.Add(this.cmdBrowse);
@@ -272,6 +296,8 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblEmployeeId;
+        private System.Windows.Forms.ListBox lstErrors;
+        private System.Windows.Forms.Label lblErrors;
     }
 }
 

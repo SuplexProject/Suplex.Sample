@@ -15,6 +15,7 @@ namespace SuplexSampleApp
         ISuplexDal _suplexDal = null;
         List<Employee> _employees = null;
 
+        #region ctor
         public EmployeeDataAccessLayer(ISuplexDal suplexDal)
         {
             //init Suplex DAL instance
@@ -30,7 +31,10 @@ namespace SuplexSampleApp
                 { new Employee( 5 ) { Name = "Esmaralda Grahame" } }
             };
         }
+        #endregion
 
+
+        #region Security implementation
         /// <summary>
         /// "Current user context" - normally this would be pulled from the environment as a local or web current user context
         /// </summary>
@@ -59,10 +63,13 @@ namespace SuplexSampleApp
             SecureObject employeeSecurity = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "EmployeeRecords", CurrentUser );
 
             //Assess AccessAllowed, throw Exception if no rights
-            if( !employeeSecurity?.Security.Results.GetByTypeRight( recordRight ).AccessAllowed ?? false )
-                throw new Exception( $"You do not have rights to {recordRight} Employee records." );
+            if( !employeeSecurity?.Security.Results.GetByTypeRight( recordRight ).AccessAllowed ?? true )
+                throw new Exception( $"{CurrentUser} does not have rights to {recordRight} Employee records." );
         }
+        #endregion
 
+
+        #region CRUD methods
         /// <summary>
         /// Get the Employees list
         /// </summary>
@@ -71,8 +78,7 @@ namespace SuplexSampleApp
         public List<Employee> GetEmployees(string filter = null)
         {
             //Check for access rights, throws exception if denied
-            if( !HasAccess( RecordRight.List ) )
-                return null;
+            HasAccessOrException( RecordRight.List );
 
             if( !string.IsNullOrWhiteSpace( filter ) )
                 return _employees.FindAll( e => e.Name.Contains( filter ) );
@@ -88,8 +94,7 @@ namespace SuplexSampleApp
         public Employee GetEmployee(int id)
         {
             //Check for access rights, throws exception if denied
-            if( !HasAccess( RecordRight.Select ) )
-                return null;
+            HasAccessOrException( RecordRight.Select );
 
             return _employees.FirstOrDefault( e => e.Id == id );
         }
@@ -102,8 +107,7 @@ namespace SuplexSampleApp
         public Employee CreateEmployee(string name)
         {
             //Check for access rights, throws exception if denied
-            if( !HasAccess( RecordRight.Insert ) )
-                return null;
+            HasAccessOrException( RecordRight.Insert );
 
             int id = _employees?.Count > 0 ? _employees[_employees.Count].Id : 0;
 
@@ -121,8 +125,7 @@ namespace SuplexSampleApp
         public Employee UpdateEmployee(Employee emp)
         {
             //Check for access rights, throws exception if denied
-            if( !HasAccess( RecordRight.Update ) )
-                return null;
+            HasAccessOrException( RecordRight.Update );
 
             if( emp == null )
                 return null;
@@ -142,8 +145,7 @@ namespace SuplexSampleApp
         public bool DeleteEmployee(int id)
         {
             //Check for access rights, throws exception if denied
-            if( !HasAccess( RecordRight.Delete ) )
-                return false;
+            HasAccessOrException( RecordRight.Delete );
 
             if( id <= 0 )
                 return false;
@@ -154,5 +156,6 @@ namespace SuplexSampleApp
 
             return index > 0;
         }
+        #endregion
     }
 }
