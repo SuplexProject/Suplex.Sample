@@ -94,8 +94,10 @@ namespace SuplexSampleApp
         #endregion
 
 
-
         #region Apply Security
+        /// <summary>
+        /// Simulates switching the current security context
+        /// </summary>
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string currentUser = ((User)cmbUsers.SelectedItem).Name;
@@ -103,11 +105,13 @@ namespace SuplexSampleApp
             //set the "current user" on the Employees DAL
             _employeeDal.CurrentUser = currentUser;
 
+            //refresh the Employees list based on "currentUser"
             RefreshEmployeesList();
 
             //Evaluate the security information, starting from the top-most control
             SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmEditor", currentUser );
 
+            //apply security to frmEditor/children
             ApplyRecursive( secureObject );
 
             //alternate, manual method (not preferred)
