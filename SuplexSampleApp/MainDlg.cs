@@ -89,13 +89,6 @@ namespace SuplexSampleApp
             _employeeDal = new EmployeeDataAccessLayer( _suplexDal );
 
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
-
-            lstEmployees.DisplayMember = "Name";
-            List<Employee> employees = _employeeDal.GetEmployees();
-            if( employees != null )
-                this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
-            else
-                this.UiThreadHelper( () => lstEmployees.DataSource = null );
         }
         #endregion
 
@@ -110,11 +103,13 @@ namespace SuplexSampleApp
             _employeeDal.CurrentUser = currentUser;
 
             lstEmployees.DisplayMember = "Name";
-            List<Employee> employees = _employeeDal.GetEmployees();
+            lstEmployees.Items.Clear();
+            List<Employee> employees = _employeeDal.GetEmployees()?.OrderBy( emps => emps.Name ).ToList();
             if( employees != null )
-                this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
+                foreach( Employee employee in employees )
+                    lstEmployees.Items.Add( employee );
             else
-                this.UiThreadHelper( () => lstEmployees.DataSource = null );
+                lstEmployees.Items.Clear();
 
             //Evaluate the security information, starting from the top-most control
             SecureObject secureObject = (SecureObject)_suplexDal.EvalSecureObjectSecurity( "frmEditor", currentUser );
@@ -168,7 +163,7 @@ namespace SuplexSampleApp
                 employee.Name = txtName.Text;
                 Employee updated = _employeeDal.UpdateEmployee( employee );
                 if( updated != null )
-                    ((Employee)lstEmployees.SelectedItem).Name = updated.Name;
+                    lstEmployees.Items[lstEmployees.SelectedIndex] = updated;
             }
         }
         #endregion

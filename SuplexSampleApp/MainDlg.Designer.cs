@@ -86,11 +86,11 @@
             // lblUsers
             // 
             this.lblUsers.AutoSize = true;
-            this.lblUsers.Location = new System.Drawing.Point(114, 57);
+            this.lblUsers.Location = new System.Drawing.Point(27, 57);
             this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(49, 17);
+            this.lblUsers.Size = new System.Drawing.Size(136, 17);
             this.lblUsers.TabIndex = 3;
-            this.lblUsers.Text = "Users:";
+            this.lblUsers.Text = "Select User Context:";
             this.lblUsers.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cmdBrowse
