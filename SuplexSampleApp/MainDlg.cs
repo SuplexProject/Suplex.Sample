@@ -88,11 +88,30 @@ namespace SuplexSampleApp
 
             this.UiThreadHelper( () => cmbUsers.DataSource = new BindingSource( _suplexDal.Store.Users.OrderBy( u => u.Name ).ToList(), null ).DataSource );
 
+            lstEmployees.DisplayMember = "Name";
             List<Employee> employees = _employeeDal.GetEmployees();
             if( employees != null )
                 this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
+            else
+                this.UiThreadHelper( () => lstEmployees.DataSource = null );
         }
         #endregion
+
+
+        private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Employee selected = (Employee)lstEmployees.SelectedItem;
+            Employee employee = _employeeDal.GetEmployee( selected?.Id ?? 0 );
+            if( employee != null )
+            {
+                txtId.Text = employee.Id.ToString();
+                txtName.Text = employee.Name;
+            }
+            else
+            {
+                txtId.Text = txtName.Text = string.Empty;
+            }
+        }
 
 
         #region Apply Security
@@ -103,8 +122,8 @@ namespace SuplexSampleApp
             //set the "current user" on the Employees DAL
             _employeeDal.CurrentUser = currentUser;
 
-            List<Employee> employees = _employeeDal.GetEmployees();
             lstEmployees.DisplayMember = "Name";
+            List<Employee> employees = _employeeDal.GetEmployees();
             if( employees != null )
                 this.UiThreadHelper( () => lstEmployees.DataSource = new BindingSource( employees.OrderBy( emps => emps.Name ).ToList(), null ).DataSource );
             else

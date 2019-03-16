@@ -34,7 +34,7 @@
             this.lblSuplexFileStorePath = new System.Windows.Forms.Label();
             this.lblUsers = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
-            this.ibiName = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.frmMain = new System.Windows.Forms.GroupBox();
             this.pnlInfo = new System.Windows.Forms.Panel();
@@ -101,12 +101,12 @@
             this.lblId.Text = "Employee Id:";
             this.lblId.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // ibiName
+            // txtName
             // 
-            this.ibiName.Location = new System.Drawing.Point(123, 70);
-            this.ibiName.Name = "ibiName";
-            this.ibiName.Size = new System.Drawing.Size(154, 22);
-            this.ibiName.TabIndex = 5;
+            this.txtName.Location = new System.Drawing.Point(123, 70);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(154, 22);
+            this.txtName.TabIndex = 5;
             // 
             // btnCreate
             // 
@@ -124,7 +124,7 @@
             this.frmMain.Controls.Add(this.lblEmployeeName);
             this.frmMain.Controls.Add(this.lblId);
             this.frmMain.Controls.Add(this.btnCreate);
-            this.frmMain.Controls.Add(this.ibiName);
+            this.frmMain.Controls.Add(this.txtName);
             this.frmMain.Location = new System.Drawing.Point(169, 152);
             this.frmMain.Name = "frmMain";
             this.frmMain.Size = new System.Drawing.Size(311, 217);
@@ -191,6 +191,8 @@
             // chkApplyRecursive
             // 
             this.chkApplyRecursive.AutoSize = true;
+            this.chkApplyRecursive.Checked = true;
+            this.chkApplyRecursive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkApplyRecursive.Location = new System.Drawing.Point(169, 93);
             this.chkApplyRecursive.Name = "chkApplyRecursive";
             this.chkApplyRecursive.Size = new System.Drawing.Size(132, 21);
@@ -207,6 +209,7 @@
             this.lstEmployees.Name = "lstEmployees";
             this.lstEmployees.Size = new System.Drawing.Size(148, 212);
             this.lstEmployees.TabIndex = 11;
+            this.lstEmployees.SelectedIndexChanged += new System.EventHandler(this.lstEmployees_SelectedIndexChanged);
             // 
             // MainDlg
             // 
@@ -243,7 +246,7 @@
         private System.Windows.Forms.Label lblSuplexFileStorePath;
         private System.Windows.Forms.Label lblUsers;
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.TextBox ibiName;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.GroupBox frmMain;
         private System.Windows.Forms.TextBox txtId;

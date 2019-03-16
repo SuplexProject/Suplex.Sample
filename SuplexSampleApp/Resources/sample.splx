@@ -10,21 +10,21 @@ SecureObjects:
     SaclAllowInherit: true
     SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
     Dacl:
-    - UId: aa0fb39a-9f55-4462-87f6-ad5a0407657c
+    - UId: 45f00855-6c5e-448b-a12d-319c3e685f9e
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
       Right: FullControl
       Allowed: True
       Inheritable: True
       InheritedFrom: 3c5698f7-b7f7-4341-bb40-0a1ab89f5911
       TrusteeUId: d42015e9-c8f4-4eed-a623-ad99a15cd918
-    - UId: 8a717e3e-2e2f-4a77-bec1-cf58a837657f
+    - UId: 09d1ce3a-6f27-44b2-93f6-fc82893fc28a
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-      Right: Select
+      Right: List, Select
       Allowed: True
       Inheritable: True
       InheritedFrom: cfc467ed-e0b8-4586-82e3-59bd6d512a47
       TrusteeUId: fda003c9-43f9-4a5b-aa28-f6c400496c14
-    - UId: 9acacbd9-e746-42a1-aad6-a7af1c0d7268
+    - UId: 26abbc88-18b7-49cd-b761-66fe37a72568
       RightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
       Right: List
       Allowed: True
@@ -64,14 +64,14 @@ SecureObjects:
       SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
       Dacl: []
       DaclConverters:
-      - UId: c34e0839-823e-46d2-9a0b-4ea15044c529
+      - UId: f990dff3-5e5c-49b4-bfab-f0327d9d76fb
         SourceRight: FullControl
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         TargetRight: Operate
         TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         Inheritable: True
-      - UId: 76944f76-59e9-46fe-afdd-7dd17e82788b
-        SourceRight: Select
+      - UId: bb7ce685-5f4f-4539-b58f-167ab22cab48
+        SourceRight: List
         SourceRightType: Suplex.Security.AclModel.RecordRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
         TargetRight: Visible, Enabled
         TargetRightType: Suplex.Security.AclModel.UIRight, Suplex.Security.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -98,6 +98,22 @@ SecureObjects:
           Inheritable: True
           InheritedFrom: aa710d1e-3a8e-4973-a577-07e5aa9a9130
           TrusteeUId: ef54a62d-8026-424a-bf09-c4fc9c3deac4
+        DaclConverters: []
+        Sacl: []
+        Results: {}
+      Parent: 
+      Children: []
+    - UId: ab1b7ada-0232-4c62-a094-9e1a97214ad3
+      UniqueName: txtName
+      IsEnabled: true
+      ParentUId: 897d97a1-ff54-405f-98f1-15dd0fdc248d
+      IsSecure: false
+      IsDirty: 
+      Security:
+        DaclAllowInherit: true
+        SaclAllowInherit: true
+        SaclAuditTypeFilter: SuccessAudit, FailureAudit, Information, Warning, Error
+        Dacl: []
         DaclConverters: []
         Sacl: []
         Results: {}
